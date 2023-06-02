@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgis/postgis
+    hostname: postgis
+    container_name: postgis
+    command: -p 5432
+    restart: on-failure
+    environment: 
+      - POSTGRES_DB=postgis
+      - POSTGRES_USER=postgis
+      - POSTGRES_PASSWORD=postgis
+    networks: 
+      - sepah_main
+    expose:
+      - 5432
+    ports: 
+      - 5432:5432
+    volumes: 
+      - ./data/postgres:/var/lib/postgresql/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+networks:
+  sepah_main:
+
+volumes:
+  data:
+
